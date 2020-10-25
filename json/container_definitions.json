@@ -1,0 +1,97 @@
+[
+    {
+        "name": "librinet-service",
+        "image": "793813789751.dkr.ecr.ap-northeast-1.amazonaws.com/app-ecs:latest",
+        "memory": 300,
+        "mountPoints": [
+            {
+                "containerPath": "/var/www/html/librinet/public",
+                "sourceVolume": "service-storage"
+            }
+        ],
+        "secrets": [
+            {
+                "name": "APP_DEBUG",
+                "valueFrom": "/librinet/env/app_debug"
+            },
+            {
+                "name": "APP_ENV",
+                "valueFrom": "/librinet/env/app_env"
+            },
+            {
+                "name": "APP_NAME",
+                "valueFrom": "/librinet/env/app_name"
+            },
+            {
+                "name": "APP_URL",
+                "valueFrom": "/librinet/env/app_url"
+            },
+            {
+                "name": "SANCTUM_STATEFUL_DOMAINS",
+                "valueFrom": "/librinet/sanctum/stateful_domains"
+            },
+            {
+                "name": "SESSION_DOMAIN",
+                "valueFrom": "/librinet/sanctum/session_domain"
+            },
+            {
+                "name": "AWS_ACCESS_KEY_ID",
+                "valueFrom": "/librinet/s3/id"
+            },
+            {
+                "name": "AWS_BUCKET",
+                "valueFrom": "/librinet/s3/bucket"
+            },
+            {
+                "name": "AWS_DEFAULT_REGION",
+                "valueFrom": "/librinet/s3/region"
+            },
+            {
+                "name": "AWS_SECRET_ACCESS_KEY",
+                "valueFrom": "/librinet/s3/secret_key"
+            },
+            {
+                "name": "DB_DATABASE",
+                "valueFrom": "/librinet/db/name"
+            },
+            {
+                "name": "DB_HOST",
+                "valueFrom": "/librinet/db/host"
+            },
+            {
+                "name": "DB_PASSWORD",
+                "valueFrom": "/librinet/db/password"
+            },
+            {
+                "name": "DB_USERNAME",
+                "valueFrom": "/librinet/db/user_name"
+            },
+            {
+                "name": "GUEST_PASSWORD",
+                "valueFrom": "/librinet/db/guest_password"
+            }
+        ]
+    },
+    {
+        "name": "web",
+        "image": "793813789751.dkr.ecr.ap-northeast-1.amazonaws.com/web-ecs:latest",
+        "memory": 300,
+        "portMappings": [
+            {
+                "protocol": "tcp",
+                "containerPort": 80
+            }
+        ],
+        "volumesFrom": [
+            {
+                "sourceContainer": "librinet-service"
+            }
+        ],
+        "dependsOn": [
+            {
+                "containerName": "librinet-service",
+                "condition": "START"
+            }
+        ]
+    }
+]
