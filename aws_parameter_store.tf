@@ -27,7 +27,7 @@ resource "aws_ssm_parameter" "app_url" {
 }
 
 resource "aws_ssm_parameter" "guest_password" {
-  name        = "/${local.app_name}/db/guest_password"
+  name        = "/${local.app_name}/env/guest_password"
   value       = "not_initialized"
   type        = "SecureString"
   description = "guest user password"

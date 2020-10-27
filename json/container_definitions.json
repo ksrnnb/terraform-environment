@@ -27,6 +27,10 @@
                 "valueFrom": "/librinet/env/app_url"
             },
             {
+                "name": "GUEST_PASSWORD",
+                "valueFrom": "/librinet/env/guest_password"
+            },
+            {
                 "name": "SANCTUM_STATEFUL_DOMAINS",
                 "valueFrom": "/librinet/sanctum/stateful_domains"
             },
@@ -65,10 +69,6 @@
             {
                 "name": "DB_USERNAME",
                 "valueFrom": "/librinet/db/user_name"
-            },
-            {
-                "name": "GUEST_PASSWORD",
-                "valueFrom": "/librinet/db/guest_password"
             }
         ]
     },

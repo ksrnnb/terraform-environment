@@ -5,4 +5,4 @@
 - AWS provider 3.12.0
 
 ## 構成
-あとで追加する
+![](https://i.imgur.com/sbazFld.jpg)
