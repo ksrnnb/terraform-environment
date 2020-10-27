@@ -64,7 +64,7 @@ resource "aws_autoscaling_group" "ecs" {
   launch_configuration = aws_launch_configuration.ecs.name
   vpc_zone_identifier  = [aws_subnet.private_1a.id, aws_subnet.private_1c.id]
 
-  protect_from_scale_in = false
+  protect_from_scale_in = true
 
   lifecycle {
     create_before_destroy = true
@@ -85,7 +85,7 @@ resource "aws_ecs_capacity_provider" "main" {
 
   auto_scaling_group_provider {
     auto_scaling_group_arn         = aws_autoscaling_group.ecs.arn
-    managed_termination_protection = "DISABLED"
+    managed_termination_protection = "ENABLED"
 
     managed_scaling {
       status          = "ENABLED"

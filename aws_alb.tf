@@ -23,6 +23,13 @@ resource "aws_lb_target_group" "alb" {
   target_type          = "ip"
   deregistration_delay = "10"
 
+  # スティッキーセッション
+  stickiness {
+    enabled = true
+    type = "lb_cookie"
+    cookie_duration = 86400 // 1 day
+  }
+
   depends_on = [aws_lb.main]
 }
 
