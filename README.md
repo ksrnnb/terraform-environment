@@ -5,4 +5,4 @@
 - AWS provider 3.12.0
 
 ## 構成
-![](https://i.imgur.com/sbazFld.jpg)
+![](https://i.imgur.com/o0342AO.jpg)

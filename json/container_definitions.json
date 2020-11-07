@@ -1,7 +1,7 @@
 [
     {
         "name": "librinet-service",
-        "image": "793813789751.dkr.ecr.ap-northeast-1.amazonaws.com/app-ecs:latest",
+        "image": "793813789751.dkr.ecr.ap-northeast-1.amazonaws.com/app-ecs:fa27c34329513f76f3f7723ab381acf3952c62cc",
         "memory": 300,
         "mountPoints": [
             {

@@ -25,8 +25,8 @@ resource "aws_lb_target_group" "alb" {
 
   # スティッキーセッション
   stickiness {
-    enabled = true
-    type = "lb_cookie"
+    enabled         = true
+    type            = "lb_cookie"
     cookie_duration = 86400 // 1 day
   }
 
