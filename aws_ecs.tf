@@ -49,12 +49,6 @@ resource "aws_ecs_service" "main" {
 resource "aws_ecs_task_definition" "main" {
   family = "${local.app_name}-service"
 
-  # cpu = 256
-  # memory = 512
-  # requires_compatibilities = ["FARGATE"]
-
-  # タスクのロールにはS3の権限を付与したい
-  # task_role_arn = module.ecs_task_role.role.arn
   # タスク実行ロールはパラメータストアを利用するのに必要。
   execution_role_arn = module.ecs_task_execution.role.arn
   network_mode       = "awsvpc"
@@ -72,7 +66,7 @@ module "nginx_sg" {
   name                = "nginx_sg"
   vpc_id              = aws_vpc.main.id
   port                = "80"
-  ingress_cidr_blocks = ["0.0.0.0/0"]
+  ingress_cidr_blocks = [aws_vpc.main.cidr_block]
   tag_name            = "nginx_sg-tf"
 }
 
